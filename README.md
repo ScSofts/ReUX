@@ -1,5 +1,5 @@
 # <p align="center">🌏ReUX OS</p>
-### <p align="right">——A Operating System Written in NASM,C and C++</p>
+#### <p align="right">——A Operating System Written in NASM,C and C++</p>
 
 ## Environmnet
 + A Computer with Microsoft Windows Installed
