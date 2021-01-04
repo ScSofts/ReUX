@@ -5,3 +5,6 @@ $(BUILD)/kernel.bin : $(ROOT)/kernel.c $(THIS)
 	$(LDBIN) 0x00 -o $(BUILD)/kernel.32 -s --entry _kernel_main $(BUILD)/kernel.o
 	$(OBJCOPY) -O binary -S $(BUILD)/kernel.32 $(BUILD)/kernel.bin
 	$(DEL) $(BUILD)\kernel.32
+
+$(BUILD)/boot.bin : $(ROOT)/boot.asm $(THIS)
+	$(NASM) $(ROOT)/boot.asm -f bin -o $(BUILD)/boot.bin 

@@ -98,11 +98,14 @@ int 0x13
                   ;,%6 = ES = address to flush start
                   ;,%7 = BX = address to flush end
 mov dl,%1
-mov al,%2
 mov ch,%3
 mov cl,%4
 mov dh,%5
-mov es,%6
+
+mov ax,%6
+mov es,ax
+
+mov al,%2
 mov bx,%7
 mov ah,0x02
 int 0x13
@@ -111,14 +114,19 @@ int 0x13
 
 %macro Puts 1;%1 = string address
 mov si,%1
-    .strloop:
-        mov     al,[si]
-        add     si,1
-        cmp     al,0
-        je      .end
-        mov		ah,0x0e			
-        mov		bx,15		
-        int		0x10
-        jmp .strloop
+call strloop
+%endmacro
+
+%macro PutsImpl 0
+strloop:
+    mov     al,[si]
+    add     si,1
+    cmp     al,0
+    je      .end
+    mov		ah,0x0e			
+    mov		bx,15		
+    int		0x10
+    jmp strloop
     .end:
+        ret
 %endmacro
